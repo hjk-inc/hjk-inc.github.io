@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HJK Inc - Official Homepage</title>
+<style>
+body {
+    margin:0;
+    font-family:sans-serif;
+    background:#0b0b0b;
+    color:#0fffdd;
+}
+nav {
+    padding:20px;
+    text-align:center;
+    background:#111;
+    box-shadow:0 0 10px #0fffdd;
+}
+a {
+    color:#0fffdd;
+    text-decoration:none;
+    margin:0 10px;
+    transition:0.3s;
+}
+a:hover {
+    color:#00ffaa;
+}
+h1 {
+    text-align:center;
+    margin-top:50px;
+    font-size:3em;
+    animation:glow 1.5s infinite alternate;
+}
+@keyframes glow {
+    0% {text-shadow:0 0 5px #0fffdd,0 0 10px #0fffdd;}
+    100% {text-shadow:0 0 20px #00ffaa,0 0 40px #00ffaa;}
+}
+.page-section {
+    text-align:center;
+    margin:50px 0;
+    font-size:1.2em;
+}
+button {
+    padding:15px 30px;
+    margin:10px;
+    font-size:1em;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    background:linear-gradient(45deg,#0fffdd,#00ffaa);
+    color:#000;
+    transition:0.3s;
+}
+button:hover {
+    background:linear-gradient(45deg,#00ffaa,#0fffdd);
+}
+</style>
+</head>
+<body>
+
+<nav>
+<a href='index.html'>Home</a>
+<a href='team.html'>Team</a>
+<a href='projects.html'>Projects</a>
+<a href='products.html'>Products</a>
+<a href='github.html'>GitHub</a>
+<a href='news.html'>News</a>
+<a href='contact.html'>Contact</a>
+<a href='tools.html'>Tools</a>
+<a href='about.html'>About</a>
+</nav>
+
+<h1>Welcome to HJK Inc</h1>
+<p class="page-section">Official portal for all our organization’s projects, products, and collaborations.</p>
+
+<div class="page-section">
+<button onclick="window.location.href='team.html'">Meet Our Team</button>
+<button onclick="window.location.href='projects.html'">Our Projects</button>
+<button onclick="window.location.href='products.html'">Products</button>
+<button onclick="window.location.href='github.html'">GitHub</button>
+</div>
+
+<div class="page-section">
+<p>Hover over the title for Quantum color effect!</p>
+</div>
+
+<script>
+const h1 = document.querySelector('h1');
+h1.onmouseover = () => h1.style.color = '#ff00ff';
+h1.onmouseout = () => h1.style.color = '#0fffdd';
+
+// Add rotating background effect
+let hue = 0;
+setInterval(() => {
+    hue += 1;
+    document.body.style.background = `hsl(${hue % 360}, 20%, 5%)`;
+},50);
+</script>
+
+</body>
+</html>
