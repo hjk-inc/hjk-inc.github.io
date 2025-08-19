@@ -2,85 +2,193 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>HJK Inc Quantum Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HJK INC Official Page</title>
 <style>
-body{margin:0;font-family:'Segoe UI',sans-serif;overflow:hidden;background:#0b0b0b;color:#0fffdd;}
-nav{padding:20px;text-align:center;background:#111;box-shadow:0 0 15px #0fffdd;position:fixed;width:100%;z-index:1000;}
-nav a{color:#0fffdd;text-decoration:none;margin:0 15px;font-weight:bold;transition:0.3s;position:relative;}
-nav a::after{content:'';position:absolute;width:0%;height:2px;left:0;bottom:-5px;background:#00ffaa;transition:0.3s;}
-nav a:hover::after{width:100%;}
-nav a:hover{color:#00ffaa;}
-.section{display:none;padding:100px 30px 50px 30px;max-width:1000px;margin:0 auto;}
-.section h1{text-align:center;font-size:3em;margin-bottom:20px;animation:glow 2s infinite alternate;}
-@keyframes glow{0%{text-shadow:0 0 5px #0fffdd,0 0 10px #0fffdd;}50%{text-shadow:0 0 15px #00ffaa,0 0 30px #00ffaa;}100%{text-shadow:0 0 25px #00ffaa,0 0 50px #00ffaa;}}
-.card{margin:20px auto;padding:25px;background:linear-gradient(45deg,#0fffdd10,#00ffaa10);border-radius:15px;box-shadow:0 0 15px #0fffdd30;transition:0.5s;}
-.card:hover{box-shadow:0 0 35px #00ffaa;transform:translateY(-5px) scale(1.02);}
-canvas{position:fixed;top:0;left:0;z-index:-1;}
+/* ================== RESET ================== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+html,body{width:100%;height:100%;overflow-x:hidden;background:#0b0c10;color:#c5c6c7;scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+/* ================== VARIABLES ================== */
+:root{
+--primary:#66fcf1;
+--secondary:#45a29e;
+--dark-bg:#0b0c10;
+--card-bg:rgba(255,255,255,0.05);
+--hover-glow:0 0 20px var(--primary);
+--font-glow:0 0 5px var(--primary);
+--transition:.3s;
+}
+/* ================== BODY ================== */
+body{background:linear-gradient(120deg,#0b0c10,#1f2833);}
+/* ================== NAVBAR ================== */
+nav{position:fixed;top:0;left:0;width:100%;background:rgba(11,12,16,0.85);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;z-index:999;}
+nav .logo{font-weight:bold;font-size:1.6rem;color:var(--primary);text-shadow:var(--font-glow);}
+nav ul{display:flex;gap:2rem;}
+nav ul li{position:relative;cursor:pointer;transition:var(--transition);}
+nav ul li:hover{color:var(--primary);}
+nav ul li::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--primary);transition:var(--transition);}
+nav ul li:hover::after{width:100%;}
+/* ================== SECTIONS ================== */
+section{min-height:100vh;padding:6rem 3rem;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;}
+h1,h2,h3,h4,h5,h6{color:#c5c6c7;text-align:center;}
+h1{font-size:3rem;text-shadow:var(--font-glow);}
+h2{font-size:2.2rem;margin-bottom:1rem;}
+p{max-width:800px;text-align:center;line-height:1.8;font-size:1rem;color:#c5c6c7;}
+button{padding:.8rem 2rem;border:none;background:var(--primary);color:#0b0c10;font-weight:bold;border-radius:5px;cursor:pointer;transition:var(--transition);box-shadow:var(--hover-glow);}
+button:hover{transform:scale(1.05);box-shadow:0 0 30px var(--primary);}
+.card{background:var(--card-bg);padding:2rem;border-radius:10px;margin:1rem;min-width:250px;transition:var(--transition);text-align:center;box-shadow:0 0 10px rgba(0,255,255,0.2);}
+.card:hover{transform:translateY(-10px);box-shadow:0 0 30px var(--primary);}
+.cards{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2rem;margin-top:2rem;}
+/* ================== HERO ================== */
+#hero{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(45deg,#1f2833,#0b0c10);color:var(--primary);}
+#hero button{margin-top:2rem;}
+/* ================== TEAM ================== */
+#team .card h3{margin-top:1rem;margin-bottom:.5rem;color:var(--primary);}
+#team .card p{color:#c5c6c7;font-size:.9rem;}
+/* ================== PRODUCTS ================== */
+#products .card h3{margin-top:1rem;margin-bottom:.5rem;color:var(--primary);}
+#products .card p{color:#c5c6c7;font-size:.9rem;}
+/* ================== CONTACT ================== */
+#contact form{display:flex;flex-direction:column;gap:1rem;width:300px;}
+#contact input, #contact textarea{padding:.8rem;border-radius:5px;border:none;background:rgba(255,255,255,0.05);color:#c5c6c7;}
+#contact input::placeholder,#contact textarea::placeholder{color:#c5c6c7;}
+#contact button{align-self:center;}
+/* ================== SCROLL EFFECTS ================== */
+section{opacity:0;transform:translateY(50px);transition:all 1s ease;}
+section.active{opacity:1;transform:translateY(0);}
 </style>
 </head>
 <body>
-
+<!-- NAVBAR -->
 <nav>
-<a onclick="showPage('home')">Home</a>
-<a onclick="showPage('team')">Team</a>
-<a onclick="showPage('projects')">Projects</a>
-<a onclick="showPage('products')">Products</a>
+<div class="logo">HJK INC</div>
+<ul>
+<li onclick="scrollToSection('hero')">Home</li>
+<li onclick="scrollToSection('corporations')">Corporations</li>
+<li onclick="scrollToSection('team')">Team</li>
+<li onclick="scrollToSection('products')">Products</li>
+<li onclick="scrollToSection('contact')">Contact</li>
+</ul>
 </nav>
 
-<div id="home" class="section" style="display:block;">
-<h1>Welcome to HJK Inc Quantum Hub</h1>
-<p style="text-align:center;font-size:1.2em;">The official hub for all projects and products.</p>
+<!-- HERO -->
+<section id="hero">
+<h1>Welcome to HJK INC</h1>
+<p>Your futuristic IT corporation with AI-powered solutions, Quantum CSS innovations, and global products.</p>
+<button onclick="scrollToSection('corporations')">Explore Corporations</button>
+</section>
+
+<!-- CORPORATIONS -->
+<section id="corporations">
+<h2>Our Corporations</h2>
+<div class="cards">
+<div class="card">
+<h3>HJK.AI</h3>
+<p>Advanced AI research and deployment.</p>
 </div>
-
-<div id="team" class="section">
-<h1>Team</h1>
-<div class="card"><h2>Akshat Srivastava</h2><p>CEO</p></div>
-<div class="card"><h2>Prince Gupta</h2><p>Chairman</p></div>
-<div class="card"><h2>Ritesh Kumar Vishwakarma</h2><p>Managing Director</p></div>
-<div class="card"><h2>Plains</h2><p>Lead Developer</p></div>
+<div class="card">
+<h3>HJK.INFINITI</h3>
+<p>Infinite scalability cloud solutions.</p>
 </div>
-
-<div id="projects" class="section">
-<h1>Projects</h1>
-<div class="card"><h2>HJK.AI</h2><p>Advanced AI platform</p></div>
-<div class="card"><h2>VSQL</h2><p>AI SQL tool</p></div>
+<div class="card">
+<h3>HJK.BATTERY</h3>
+<p>Next-gen energy solutions.</p>
 </div>
-
-<div id="products" class="section">
-<h1>Products</h1>
-<div class="card"><h2>Product 1</h2><p>Next-gen software</p></div>
-<div class="card"><h2>Product 2</h2><p>AI analytics tool</p></div>
+<div class="card">
+<h3>HJK Mobility</h3>
+<p>Automated mobility and logistics systems.</p>
 </div>
+</div>
+</section>
 
-<canvas id="bgCanvas"></canvas>
+<!-- TEAM -->
+<section id="team">
+<h2>Our Leadership</h2>
+<div class="cards">
+<div class="card">
+<h3>Rakshak Sivastav</h3>
+<p>CEO – Visionary leader and co-founder.</p>
+</div>
+<div class="card">
+<h3>Prince</h3>
+<p>Chairman – Strategic oversight and innovation.</p>
+</div>
+<div class="card">
+<h3>Ritesh Kumar Vishwakarma</h3>
+<p>Managing Director – Operations and management.</p>
+</div>
+<div class="card">
+<h3>Om Tripathi</h3>
+<p>Head Director – Technical leadership and project guidance.</p>
+</div>
+</div>
+</section>
 
-<!-- Libraries embedded -->
+<!-- PRODUCTS -->
+<section id="products">
+<h2>Our Products</h2>
+<div class="cards">
+<div class="card">
+<h3>HJK.AI</h3>
+<p>AI research, automation, and development tools.</p>
+</div>
+<div class="card">
+<h3>HJK.INFINITI</h3>
+<p>Cloud infrastructure with infinite scalability.</p>
+</div>
+<div class="card">
+<h3>HJK.BATTERY</h3>
+<p>Energy-efficient solutions and battery tech.</p>
+</div>
+<div class="card">
+<h3>Quantum CSS Homepage</h3>
+<p>Futuristic web design using advanced internal CSS/JS effects.</p>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>Contact Us</h2>
+<form onsubmit="alert('Message Sent!');return false;">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea rows="4" placeholder="Message" required></textarea>
+<button type="submit">Send Message</button>
+</form>
+</section>
+
 <script>
-// GSAP simplified version
-function gsapAnimate(el,props,duration){let start={},end=props;for(let k in props){start[k]=parseFloat(getComputedStyle(el)[k])||0;}let t=0;let frame=()=>{t+=0.02;for(let k in props){el.style[k]=start[k]+(end[k]-start[k])*t+((k==='opacity')?'':'px');}if(t<1)requestAnimationFrame(frame);}frame();}
-
-// Three.js minimal internal library for spinning cube
-class ThreeMini{constructor(){this.scene=new THREE.Scene();this.camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);this.renderer=new THREE.WebGLRenderer({canvas:document.createElement('canvas'),alpha:true});document.body.appendChild(this.renderer.domElement);this.renderer.setSize(window.innerWidth,window.innerHeight);let geometry=new THREE.BoxGeometry();let material=new THREE.MeshBasicMaterial({color:0x0fffdd,wireframe:true});this.cube=new THREE.Mesh(geometry,material);this.scene.add(this.cube);this.camera.position.z=5;this.animate();}animate(){requestAnimationFrame(()=>this.animate());this.cube.rotation.x+=0.01;this.cube.rotation.y+=0.01;this.renderer.render(this.scene,this.camera);}}
-window.addEventListener('resize',()=>{if(window.three)window.three.renderer.setSize(window.innerWidth,window.innerHeight);});
-
-// Page nav
-function showPage(id){let sections=document.querySelectorAll('.section');sections.forEach(s=>s.style.display='none');document.getElementById(id).style.display='block';}
-
-// Particle effect
-document.body.addEventListener('mousemove',e=>{let p=document.createElement('div');p.style.width=p.style.height=Math.random()*5+2+'px';p.style.background='hsl('+(Math.random()*360)+',100%,50%)';p.style.position='absolute';p.style.left=e.clientX+'px';p.style.top=e.clientY+'px';p.style.borderRadius='50%';document.body.appendChild(p);setTimeout(()=>p.remove(),800);});
-
-// Canvas lines
-const canvas=document.getElementById('bgCanvas');const ctx=canvas.getContext('2d');canvas.width=window.innerWidth;canvas.height=window.innerHeight;let lines=[];for(let i=0;i<80;i++){lines.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,speed:Math.random()*1+0.2});}
-function drawLines(){ctx.fillStyle='rgba(11,11,11,0.2)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.strokeStyle='#0fffdd';lines.forEach(l=>{l.y+=l.speed;if(l.y>canvas.height)l.y=0;ctx.beginPath();ctx.moveTo(l.x,l.y);ctx.lineTo(l.x+Math.random()*10,l.y+Math.random()*10);ctx.stroke();});requestAnimationFrame(drawLines);}
-drawLines();
-
-// Initialize ThreeMini cube
-window.three=new ThreeMini();
+// ================== SCROLL ==================
+function scrollToSection(id){
+document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+// ================== SECTION ANIMATION ==================
+const sections=document.querySelectorAll('section');
+function animateSections(){
+sections.forEach(sec=>{
+let top=sec.getBoundingClientRect().top;
+if(top<window.innerHeight-100){sec.classList.add('active');}
+});
+}
+window.addEventListener('scroll',animateSections);
+animateSections();
+// ================== PARTICLE EFFECT ==================
+class Particle{
+constructor(){this.element=document.createElement('div');document.body.appendChild(this.element);this.reset();}
+reset(){this.x=Math.random()*window.innerWidth;this.y=Math.random()*window.innerHeight;this.size=Math.random()*3+1;this.speedY=Math.random()*1+0.2;this.element.style.position='fixed';this.element.style.left=this.x+'px';this.element.style.top=this.y+'px';this.element.style.width=this.size+'px';this.element.style.height=this.size+'px';this.element.style.background='rgba(102,252,241,0.5)';this.element.style.borderRadius='50%';}
+update(){this.y+=this.speedY;if(this.y>window.innerHeight){this.y=-5;this.x=Math.random()*window.innerWidth;}this.element.style.top=this.y+'px';this.element.style.left=this.x+'px';}
+}
+let particles=[];for(let i=0;i<100;i++){particles.push(new Particle());}
+function updateParticles(){particles.forEach(p=>p.update());requestAnimationFrame(updateParticles);}
+updateParticles();
+// ================== BUTTON HOVER GLOW ==================
+document.querySelectorAll('button').forEach(btn=>{
+btn.addEventListener('mouseenter',()=>{btn.style.boxShadow='0 0 30px #66fcf1';});
+btn.addEventListener('mouseleave',()=>{btn.style.boxShadow='0 0 20px #66fcf1';});
+});
 </script>
-<!-- Minimal Three.js inside -->
-<script>
-!function(){function e(){this.scene=new THREE.Scene,this.camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,.1,1e3),this.renderer=new THREE.WebGLRenderer({canvas:document.createElement("canvas"),alpha:!0}),document.body.appendChild(this.renderer.domElement),this.renderer.setSize(window.innerWidth,window.innerHeight);let e=new THREE.BoxGeometry,t=new THREE.MeshBasicMaterial({color:65535,wireframe:!0});this.cube=new THREE.Mesh(e,t),this.scene.add(this.cube),this.camera.position.z=5,this.animate()}e.prototype.animate=function(){requestAnimationFrame(()=>this.animate()),this.cube.rotation.x+=.01,this.cube.rotation.y+=.01,this.renderer.render(this.scene,this.camera)},window.ThreeMini=e}();
-</script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
 </body>
 </html>
