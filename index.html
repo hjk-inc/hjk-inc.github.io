@@ -3,192 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HJK INC Official Page</title>
+<title>HJK INC - Quantum Corporate Site</title>
 <style>
-/* ================== RESET ================== */
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-html,body{width:100%;height:100%;overflow-x:hidden;background:#0b0c10;color:#c5c6c7;scroll-behavior:smooth;}
-a{text-decoration:none;color:inherit;}
-ul{list-style:none;}
-/* ================== VARIABLES ================== */
-:root{
---primary:#66fcf1;
---secondary:#45a29e;
---dark-bg:#0b0c10;
---card-bg:rgba(255,255,255,0.05);
---hover-glow:0 0 20px var(--primary);
---font-glow:0 0 5px var(--primary);
---transition:.3s;
-}
-/* ================== BODY ================== */
-body{background:linear-gradient(120deg,#0b0c10,#1f2833);}
-/* ================== NAVBAR ================== */
-nav{position:fixed;top:0;left:0;width:100%;background:rgba(11,12,16,0.85);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;z-index:999;}
-nav .logo{font-weight:bold;font-size:1.6rem;color:var(--primary);text-shadow:var(--font-glow);}
-nav ul{display:flex;gap:2rem;}
-nav ul li{position:relative;cursor:pointer;transition:var(--transition);}
-nav ul li:hover{color:var(--primary);}
-nav ul li::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--primary);transition:var(--transition);}
-nav ul li:hover::after{width:100%;}
-/* ================== SECTIONS ================== */
-section{min-height:100vh;padding:6rem 3rem;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;}
-h1,h2,h3,h4,h5,h6{color:#c5c6c7;text-align:center;}
-h1{font-size:3rem;text-shadow:var(--font-glow);}
-h2{font-size:2.2rem;margin-bottom:1rem;}
-p{max-width:800px;text-align:center;line-height:1.8;font-size:1rem;color:#c5c6c7;}
-button{padding:.8rem 2rem;border:none;background:var(--primary);color:#0b0c10;font-weight:bold;border-radius:5px;cursor:pointer;transition:var(--transition);box-shadow:var(--hover-glow);}
-button:hover{transform:scale(1.05);box-shadow:0 0 30px var(--primary);}
-.card{background:var(--card-bg);padding:2rem;border-radius:10px;margin:1rem;min-width:250px;transition:var(--transition);text-align:center;box-shadow:0 0 10px rgba(0,255,255,0.2);}
-.card:hover{transform:translateY(-10px);box-shadow:0 0 30px var(--primary);}
-.cards{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2rem;margin-top:2rem;}
-/* ================== HERO ================== */
-#hero{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(45deg,#1f2833,#0b0c10);color:var(--primary);}
-#hero button{margin-top:2rem;}
-/* ================== TEAM ================== */
-#team .card h3{margin-top:1rem;margin-bottom:.5rem;color:var(--primary);}
-#team .card p{color:#c5c6c7;font-size:.9rem;}
-/* ================== PRODUCTS ================== */
-#products .card h3{margin-top:1rem;margin-bottom:.5rem;color:var(--primary);}
-#products .card p{color:#c5c6c7;font-size:.9rem;}
-/* ================== CONTACT ================== */
-#contact form{display:flex;flex-direction:column;gap:1rem;width:300px;}
-#contact input, #contact textarea{padding:.8rem;border-radius:5px;border:none;background:rgba(255,255,255,0.05);color:#c5c6c7;}
-#contact input::placeholder,#contact textarea::placeholder{color:#c5c6c7;}
-#contact button{align-self:center;}
-/* ================== SCROLL EFFECTS ================== */
-section{opacity:0;transform:translateY(50px);transition:all 1s ease;}
-section.active{opacity:1;transform:translateY(0);}
+/* Reset & Base */
+*{margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif;}
+body{background:#0b0c10; color:#c5c6c7; overflow-x:hidden; transition:0.5s;}
+a{text-decoration:none; color:inherit;}
+section{min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:80px 50px; transition:0.5s;}
+h1,h2,h3{margin-bottom:20px;}
+button{cursor:pointer; padding:10px 25px; border:none; background:#45a29e; color:#0b0c10; font-weight:bold; border-radius:5px; transition:0.3s;}
+button:hover{background:#66fcf1;}
+nav{position:fixed; top:0; left:0; width:100%; background:rgba(11,12,16,0.95); display:flex; justify-content:center; gap:30px; padding:20px; z-index:1000;}
+nav a{color:#66fcf1; font-weight:bold; transition:0.3s;}
+nav a:hover{color:#45a29e;}
+#hero{background: radial-gradient(circle at center, #1f2833 0%, #0b0c10 100%); color:#66fcf1; text-align:center;}
+#about,#team,#products,#contact{background:#1f2833; color:#c5c6c7;}
+.section-content{max-width:1100px; text-align:center;}
+.card{background:#0b0c10; padding:25px; margin:20px; border-radius:12px; box-shadow:0 0 25px rgba(0,255,255,0.2); transition:0.3s; transform:translateY(0);}
+.card:hover{transform:scale(1.05) translateY(-10px);}
+footer{background:#0b0c10; text-align:center; padding:40px; font-size:14px; color:#45a29e;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
+.float{animation:float 3s ease-in-out infinite;}
+/* Quantum Effects */
+.q-btn{position:relative; overflow:hidden;}
+.q-btn::before{content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(120deg, #45a29e,#66fcf1,#45a29e); transition:0.5s; z-index:0;}
+.q-btn:hover::before{left:100%;}
+.q-btn span{position:relative; z-index:1;}
 </style>
 </head>
 <body>
-<!-- NAVBAR -->
+
+<!-- Navigation -->
 <nav>
-<div class="logo">HJK INC</div>
-<ul>
-<li onclick="scrollToSection('hero')">Home</li>
-<li onclick="scrollToSection('corporations')">Corporations</li>
-<li onclick="scrollToSection('team')">Team</li>
-<li onclick="scrollToSection('products')">Products</li>
-<li onclick="scrollToSection('contact')">Contact</li>
-</ul>
+<a href="#hero">Home</a>
+<a href="#about">About</a>
+<a href="#team">Team</a>
+<a href="#products">Products</a>
+<a href="#contact">Contact</a>
 </nav>
 
-<!-- HERO -->
+<!-- Hero -->
 <section id="hero">
-<h1>Welcome to HJK INC</h1>
-<p>Your futuristic IT corporation with AI-powered solutions, Quantum CSS innovations, and global products.</p>
-<button onclick="scrollToSection('corporations')">Explore Corporations</button>
-</section>
-
-<!-- CORPORATIONS -->
-<section id="corporations">
-<h2>Our Corporations</h2>
-<div class="cards">
-<div class="card">
-<h3>HJK.AI</h3>
-<p>Advanced AI research and deployment.</p>
-</div>
-<div class="card">
-<h3>HJK.INFINITI</h3>
-<p>Infinite scalability cloud solutions.</p>
-</div>
-<div class="card">
-<h3>HJK.BATTERY</h3>
-<p>Next-gen energy solutions.</p>
-</div>
-<div class="card">
-<h3>HJK Mobility</h3>
-<p>Automated mobility and logistics systems.</p>
-</div>
+<div class="section-content">
+<h1 class="float">HJK INC</h1>
+<h2>Innovating the Future of IT</h2>
+<p>Welcome to the official site of HJK INC. Explore our divisions, products, and leadership.</p>
+<button class="q-btn" onclick="scrollToSection('about')"><span>Discover More</span></button>
 </div>
 </section>
 
-<!-- TEAM -->
+<!-- About -->
+<section id="about">
+<div class="section-content">
+<h2>About HJK INC</h2>
+<p>HJK INC is a leading IT corporation specializing in AI platforms, database solutions, and energy management. We combine coding expertise with strategic management to innovate the future.</p>
+</div>
+</section>
+
+<!-- Team -->
 <section id="team">
+<div class="section-content">
 <h2>Our Leadership</h2>
-<div class="cards">
 <div class="card">
-<h3>Rakshak Sivastav</h3>
-<p>CEO – Visionary leader and co-founder.</p>
+<h3>CEO: Rakshak Srivastav</h3>
+<p>Oversees strategy and cooperation among divisions. Trustable and highly cooperative.</p>
 </div>
 <div class="card">
-<h3>Prince</h3>
-<p>Chairman – Strategic oversight and innovation.</p>
+<h3>Chairman: Prince</h3>
+<p>Guides management and coding efficiency. Assisted by central management.</p>
 </div>
 <div class="card">
-<h3>Ritesh Kumar Vishwakarma</h3>
-<p>Managing Director – Operations and management.</p>
+<h3>Managing Director: Ritesh Kumar Vishwakarma</h3>
+<p>Manages operations and ensures smooth inter-division communication.</p>
 </div>
 <div class="card">
-<h3>Om Tripathi</h3>
-<p>Head Director – Technical leadership and project guidance.</p>
+<h3>Head Director: Om Tripathi</h3>
+<p>Leads programming systems and development efforts across the organization.</p>
 </div>
 </div>
 </section>
 
-<!-- PRODUCTS -->
+<!-- Products -->
 <section id="products">
+<div class="section-content">
 <h2>Our Products</h2>
-<div class="cards">
 <div class="card">
 <h3>HJK.AI</h3>
-<p>AI research, automation, and development tools.</p>
+<p>Advanced AI platform for research, automation, and learning.</p>
 </div>
 <div class="card">
-<h3>HJK.INFINITI</h3>
-<p>Cloud infrastructure with infinite scalability.</p>
+<h3>VSQL</h3>
+<p>Visual SQL AI tool for database management and analytics.</p>
 </div>
 <div class="card">
 <h3>HJK.BATTERY</h3>
-<p>Energy-efficient solutions and battery tech.</p>
-</div>
-<div class="card">
-<h3>Quantum CSS Homepage</h3>
-<p>Futuristic web design using advanced internal CSS/JS effects.</p>
+<p>Energy management solutions for devices and servers, optimized for efficiency.</p>
 </div>
 </div>
 </section>
 
-<!-- CONTACT -->
+<!-- Contact -->
 <section id="contact">
+<div class="section-content">
 <h2>Contact Us</h2>
-<form onsubmit="alert('Message Sent!');return false;">
-<input type="text" placeholder="Your Name" required>
-<input type="email" placeholder="Your Email" required>
-<textarea rows="4" placeholder="Message" required></textarea>
-<button type="submit">Send Message</button>
-</form>
+<p>Email: contact@hjk.inc</p>
+<p>GitHub: <a href="https://github.com/hjk-maker" target="_blank">hjk-maker</a></p>
+<p>All divisions and products are connected and synced with the organization.</p>
+</div>
 </section>
 
+<!-- Footer -->
+<footer>
+&copy; 2025 HJK INC | All Rights Reserved
+</footer>
+
+<!-- Internal JS -->
 <script>
-// ================== SCROLL ==================
-function scrollToSection(id){
-document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
-// ================== SECTION ANIMATION ==================
-const sections=document.querySelectorAll('section');
-function animateSections(){
-sections.forEach(sec=>{
-let top=sec.getBoundingClientRect().top;
-if(top<window.innerHeight-100){sec.classList.add('active');}
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+
+// Quantum dynamic background
+document.addEventListener('mousemove', function(e){
+let x = e.clientX/window.innerWidth*100;
+let y = e.clientY/window.innerHeight*100;
+document.body.style.background = `radial-gradient(circle at ${x}% ${y}%, #1f2833 0%, #0b0c10 100%)`;
 });
-}
-window.addEventListener('scroll',animateSections);
-animateSections();
-// ================== PARTICLE EFFECT ==================
-class Particle{
-constructor(){this.element=document.createElement('div');document.body.appendChild(this.element);this.reset();}
-reset(){this.x=Math.random()*window.innerWidth;this.y=Math.random()*window.innerHeight;this.size=Math.random()*3+1;this.speedY=Math.random()*1+0.2;this.element.style.position='fixed';this.element.style.left=this.x+'px';this.element.style.top=this.y+'px';this.element.style.width=this.size+'px';this.element.style.height=this.size+'px';this.element.style.background='rgba(102,252,241,0.5)';this.element.style.borderRadius='50%';}
-update(){this.y+=this.speedY;if(this.y>window.innerHeight){this.y=-5;this.x=Math.random()*window.innerWidth;}this.element.style.top=this.y+'px';this.element.style.left=this.x+'px';}
-}
-let particles=[];for(let i=0;i<100;i++){particles.push(new Particle());}
-function updateParticles(){particles.forEach(p=>p.update());requestAnimationFrame(updateParticles);}
-updateParticles();
-// ================== BUTTON HOVER GLOW ==================
-document.querySelectorAll('button').forEach(btn=>{
-btn.addEventListener('mouseenter',()=>{btn.style.boxShadow='0 0 30px #66fcf1';});
-btn.addEventListener('mouseleave',()=>{btn.style.boxShadow='0 0 20px #66fcf1';});
+
+// Card hover rotations
+const cards = document.querySelectorAll('.card');
+cards.forEach(card=>{
+card.addEventListener('mouseenter', ()=>{card.style.transform='scale(1.1) rotateY(5deg) rotateX(3deg)';});
+card.addEventListener('mouseleave', ()=>{card.style.transform='scale(1) rotateY(0deg) rotateX(0deg)';});
+});
+
+// Button ripple effect
+const buttons = document.querySelectorAll('.q-btn');
+buttons.forEach(btn=>{
+btn.addEventListener('click', e=>{
+const circle=document.createElement('span');
+circle.style.width=circle.style.height=Math.max(btn.clientWidth,btn.clientHeight)+'px';
+circle.style.position='absolute';
+circle.style.borderRadius='50%';
+circle.style.background='rgba(102,252,241,0.5)';
+circle.style.left=e.offsetX - circle.offsetWidth/2+'px';
+circle.style.top=e.offsetY - circle.offsetHeight/2+'px';
+circle.style.transform='scale(0)';
+circle.style.transition='transform 0.5s, opacity 0.5s';
+btn.appendChild(circle);
+requestAnimationFrame(()=>{circle.style.transform='scale(2)'; circle.style.opacity='0';});
+setTimeout(()=>{circle.remove();},500);
+});
 });
 </script>
+
 </body>
-</html>
+  </html>
