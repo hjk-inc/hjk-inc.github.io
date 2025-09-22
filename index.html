@@ -1,170 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HJK Inc - Innovative AI & EdTech Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
 
-<link rel="icon" type="image/x-icon" href="IMG-20250817-WA0000.jpg">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HJK INC - Quantum Corporate Site</title>
-<style>
-/* Reset & Base */
-*{margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif;}
-body{background:#0b0c10; color:#c5c6c7; overflow-x:hidden; transition:0.5s;}
-a{text-decoration:none; color:inherit;}
-section{min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:80px 50px; transition:0.5s;}
-h1,h2,h3{margin-bottom:20px;}
-button{cursor:pointer; padding:10px 25px; border:none; background:#45a29e; color:#0b0c10; font-weight:bold; border-radius:5px; transition:0.3s;}
-button:hover{background:#66fcf1;}
-nav{position:fixed; top:0; left:0; width:100%; background:rgba(11,12,16,0.95); display:flex; justify-content:center; gap:30px; padding:20px; z-index:1000;}
-nav a{color:#66fcf1; font-weight:bold; transition:0.3s;}
-nav a:hover{color:#45a29e;}
-#hero{background: radial-gradient(circle at center, #1f2833 0%, #0b0c10 100%); color:#66fcf1; text-align:center;}
-#about,#team,#products,#contact{background:#1f2833; color:#c5c6c7;}
-.section-content{max-width:1100px; text-align:center;}
-.card{background:#0b0c10; padding:25px; margin:20px; border-radius:12px; box-shadow:0 0 25px rgba(0,255,255,0.2); transition:0.3s; transform:translateY(0);}
-.card:hover{transform:scale(1.05) translateY(-10px);}
-footer{background:#0b0c10; text-align:center; padding:40px; font-size:14px; color:#45a29e;}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
-.float{animation:float 3s ease-in-out infinite;}
-/* Quantum Effects */
-.q-btn{position:relative; overflow:hidden;}
-.q-btn::before{content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(120deg, #45a29e,#66fcf1,#45a29e); transition:0.5s; z-index:0;}
-.q-btn:hover::before{left:100%;}
-.q-btn span{position:relative; z-index:1;}
-</style>
+        header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            animation: gradientShift 10s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        #queryResults {
+            min-height: 100px;
+        }
+
+        #dataChart {
+            max-width: 100%;
+            height: 300px;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-100 font-sans">
+    <header class="text-white py-16 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold">HJK Inc</h1>
+        <p class="mt-4 text-lg md:text-xl">Pioneering Offline AI & EdTech Solutions</p>
+    </header>
 
-<!-- Navigation -->
-<nav>
-<a href="#hero">Home</a>
-<a href="#about">About</a>
-<a href="#team">Team</a>
-<a href="#products">Products</a>
-<a href="#contact">Contact</a>
-</nav>
+    <main class="max-w-6xl mx-auto p-6">
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-10">
+            <h2 class="text-2xl font-semibold mb-4">About HJK Inc</h2>
+            <p class="text-gray-700 mb-4">
+                HJK Inc is dedicated to advancing education and technology through open-source AI and database tools. Our Internet Learning Tech (ILT) framework enables offline learning, making knowledge accessible to all. Explore our innovative projects below.
+            </p>
+            <a href="https://github.com/hjk-inc" class="inline-block bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700">View on GitHub</a>
+        </section>
 
-<!-- Hero -->
-<section id="hero">
-<div class="section-content">
-<h1 class="float">HJK INC</h1>
-<h2>Innovating the Future of IT</h2>
-<p>Welcome to the official site of HJK INC. Explore our divisions, products, and leadership.</p>
-<button class="q-btn" onclick="scrollToSection('about')"><span>Discover More</span></button>
-</div>
-</section>
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-10">
+            <h2 class="text-2xl font-semibold mb-4">Our Products</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="product-card bg-gray-50 rounded-lg p-4">
+                    <img src="https://via.placeholder.com/400x200?text=HJKAI+Demo" alt="HJKAI animated demo" class="product-image">
+                    <h3 class="text-xl font-semibold mt-4">HJKAI</h3>
+                    <p class="text-gray-700">Offline AI research assistant with sentiment analysis, summarization, and ILT integration for educational use.</p>
+                    <a href="https://github.com/hjk-inc/hjkai-" class="text-indigo-600 hover:underline">Learn More</a>
+                </div>
+                <div class="product-card bg-gray-50 rounded-lg p-4">
+                    <img src="https://via.placeholder.com/400x200?text=VSQL+Demo" alt="VSQL animated demo" class="product-image">
+                    <h3 class="text-xl font-semibold mt-4">VSQL</h3>
+                    <p class="text-gray-700">All-in-one database tool with ML visualization and SQL/NoSQL support, optimized for offline use.</p>
+                    <a href="https://hjk-inc.github.io/Vsql" class="text-indigo-600 hover:underline">Learn More</a>
+                </div>
+                <div class="product-card bg-gray-50 rounded-lg p-4">
+                    <img src="https://via.placeholder.com/400x200?text=HJK-QUANTUM-+Demo" alt="HJK-QUANTUM- animated demo" class="product-image">
+                    <h3 class="text-xl font-semibold mt-4">HJK-QUANTUM-</h3>
+                    <p class="text-gray-700">Quantum computing simulation environment with visualization and algorithm support.</p>
+                    <a href="https://hjk-inc.github.io/HJK-QUANTUM-/" class="text-indigo-600 hover:underline">Learn More</a>
+                </div>
+                <div class="product-card bg-gray-50 rounded-lg p-4">
+                    <img src="https://via.placeholder.com/400x200?text=Malware+Demo" alt="Malware-with-python animated demo" class="product-image">
+                    <h3 class="text-xl font-semibold mt-4">Malware-with-python</h3>
+                    <p class="text-gray-700">Educational tools for ethical cybersecurity and malware analysis.</p>
+                    <a href="https://github.com/hjk-inc/Malware-with-python" class="text-indigo-600 hover:underline">Learn More</a>
+                </div>
+            </div>
+        </section>
 
-<!-- About -->
-<section id="about">
-<div class="section-content">
-<h2>About HJK INC</h2>
-<p>HJK INC is a leading IT corporation specializing in AI platforms, database solutions, and energy management. We combine coding expertise with strategic management to innovate the future.</p>
-</div>
-</section>
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-10">
+            <h2 class="text-2xl font-semibold mb-4">Interactive Demo: HJKAI SQL Query</h2>
+            <p class="text-gray-700 mb-4">Try a simplified version of HJKAI's SQL query capabilities, integrated with ILT.</p>
+            <div class="bg-gray-50 p-4 rounded">
+                <h3 class="text-lg font-semibold">SQL Query Simulator</h3>
+                <p class="text-gray-600 mb-2">Enter a SQL query to simulate results and visualization:</p>
+                <input id="sqlQuery" type="text" placeholder="e.g., SELECT content FROM ilt_data WHERE topic LIKE '%machine learning%'" class="w-full p-2 border rounded mb-4" aria-label="SQL query input">
+                <button onclick="runQuery()" class="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700">Run Query</button>
+                <div id="queryResults" class="mt-4 p-4 bg-white border rounded"></div>
+                <canvas id="dataChart" class="mt-4"></canvas>
+            </div>
+        </section>
 
-<!-- Team -->
-<section id="team">
-<div class="section-content">
-<h2>Our Leadership</h2>
-<div class="card">
-<h3>CEO: Akshak Srivastav</h3>
-<p>Oversees strategy and cooperation among divisions. Trustable and highly cooperative.</p>
-</div>
-<div class="card">
-<h3>Chairman: Prince</h3>
-<p>Guides management and coding efficiency. Assisted by central management.</p>
-</div>
-<div class="card">
-<h3>Managing Director: Ritesh Kumar Vishwakarma</h3>
-<p>Manages operations and ensures smooth inter-division communication.</p>
-</div>
-<div class="card">
-<h3>Head Director: Om Tripathi</h3>
-<p>Leads programming systems and development efforts across the organization.</p>
-<div class="card">
-<h3> leader of the supervising group Shreyas Gautam </h3>
-<p>Oversees strategy and cooperation among divisions. Trustable and highly cooperative.</p>
-</div>
-<p>Oversees strategy and cooperation among divisions. Trustable and highly cooperative system.</p>
-</div>
-</div>
-</section>
+        <section class="text-center">
+            <h2 class="text-2xl font-semibold mb-4">Get Involved</h2>
+            <p class="text-gray-700 mb-4">HJK Inc projects are open-source under the MIT License. Join us in advancing AI and EdTech!</p>
+            <div class="space-x-4">
+                <a href="https://github.com/hjk-inc" class="inline-block bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-900">GitHub</a>
+                <a href="" class="inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Follow on X</a>
+                <a href="https://www.bing.com/search?q=hjk-inc&rlz=1C1ONGR_en-GBIN1104IN1104&oq=hjk-inc&gs_lcrp=EgZjaHJvbWUqBggBEEUYOzIGCAAQRRg8MgYIARBFGDsyBggCEAAYHjIGCAMQRRg8MgYIBBBFGDwyBggFEEUYPDIGCAYQRRg8MgYIBxBFGDzSAQkxMTYyOWowajSoAgCwAgE&sourceid=chrome&ie=UTF-8" class="inline-block bg-red-600 text-white py-2 px-4 rounded hover:bg-red-500">Search on Google</a>
+                <a href="mailto:godmy5154@gmail.com" class="inline-block bg-green-600 text-white py-2 px-4 rounded hover:bg-green-500">Contact Us</a>
+            </div>
+        </section>
+    </main>
 
-<!-- Products -->
-<section id="products">
-<div class="section-content">
-<h2>Our Products</h2>
-<div class="card">
-<h3>HJK.AI</h3>
-<p>Advanced AI platform for research, automation, and learning.</p>
-</div>
-<div class="card">
-<h3>VSQL</h3>
-<p>Visual SQL AI tool for database management and analytics.</p>
-</div>
-<div class="card">
-<h3>HJK.BATTERY/INFINITYGEAR</h3>
-<p>Energy management solutions for devices and servers, optimized for efficiency.</p>
-</div>
-  <div class="card">
-<h3>HJK QUANTUM</h3>
-<p> special software for analysing and using of quantum mechanics it can do extreme object and can run software free processing of quantum power it is very advance technology, optimized for efficiency.</p>
-  </div>
-</div>
-</section>
+    <footer class="bg-gray-800 text-white text-center py-6">
+        <p>&copy; 2025 HJK Inc. Built with ❤️ for open-source AI. | <a href="https://github.com/hjk-inc/hjk.inc.github.io" class="text-indigo-300 hover:underline">Source</a></p>
+    </footer>
 
-<!-- Contact -->
-<section id="contact">
-<div class="section-content">
-<h2>Contact Us</h2>
-<p>Email: contact@hjk.inc</p>
-<p>GitHub: <a href="https://github.com/hjk-maker" target="_blank">hjk-maker</a></p>
-<p>All divisions and products are connected and synced with the organization.</p>
-</div>
-</section>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script>
+        const sampleData = [
+            { id: 1, content: "Machine learning is transformative.", topic: "machine learning", value: 80 },
+            { id: 2, content: "AI enhances education.", topic: "machine learning", value: 65 },
+            { id: 3, content: "Quantum computing basics.", topic: "quantum computing", value: 45 },
+            { id: 4, content: "Cybersecurity best practices.", topic: "cybersecurity", value: 30 },
+        ];
 
-<!-- Footer -->
-<footer>
-&copy; 2025 HJK INC | All Rights Reserved
-</footer>
+        let chartInstance = null;
 
-<!-- Internal JS -->
-<script>
-function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+        function runQuery() {
+            const query = document.getElementById("sqlQuery").value.trim();
+            const resultsDiv = document.getElementById("queryResults");
 
-// Quantum dynamic background
-document.addEventListener('mousemove', function(e){
-let x = e.clientX/window.innerWidth*100;
-let y = e.clientY/window.innerHeight*100;
-document.body.style.background = `radial-gradient(circle at ${x}% ${y}%, #1f2833 0%, #0b0c10 100%)`;
-});
+            if (!query) {
+                resultsDiv.innerHTML = "<p class='text-red-600'>Please enter a SQL query.</p>";
+                return;
+            }
 
-// Card hover rotations
-const cards = document.querySelectorAll('.card');
-cards.forEach(card=>{
-card.addEventListener('mouseenter', ()=>{card.style.transform='scale(1.1) rotateY(5deg) rotateX(3deg)';});
-card.addEventListener('mouseleave', ()=>{card.style.transform='scale(1) rotateY(0deg) rotateX(0deg)';});
-});
+            // Simulate SQL query processing
+            let filteredData = sampleData;
+            if (query.includes("WHERE")) {
+                const match = query.match(/WHERE\s+topic\s+LIKE\s+'%([^%]+)%'/i);
+                if (match) {
+                    const topic = match[1].toLowerCase();
+                    filteredData = sampleData.filter(row => row.topic.toLowerCase().includes(topic));
+                }
+            }
 
-// Button ripple effect
-const buttons = document.querySelectorAll('.q-btn');
-buttons.forEach(btn=>{
-btn.addEventListener('click', e=>{
-const circle=document.createElement('span');
-circle.style.width=circle.style.height=Math.max(btn.clientWidth,btn.clientHeight)+'px';
-circle.style.position='absolute';
-circle.style.borderRadius='50%';
-circle.style.background='rgba(102,252,241,0.5)';
-circle.style.left=e.offsetX - circle.offsetWidth/2+'px';
-circle.style.top=e.offsetY - circle.offsetHeight/2+'px';
-circle.style.transform='scale(0)';
-circle.style.transition='transform 0.5s, opacity 0.5s';
-btn.appendChild(circle);
-requestAnimationFrame(()=>{circle.style.transform='scale(2)'; circle.style.opacity='0';});
-setTimeout(()=>{circle.remove();},500);
-});
-});
-</script>
+            // Display results
+            resultsDiv.innerHTML = `
+                <p class='text-gray-700'>Query: ${query}</p>
+                <pre class='bg-gray-100 p-2 rounded'>${JSON.stringify(filteredData, null, 2)}</pre>
+            `;
 
+            // Update chart
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+            const ctx = document.getElementById("dataChart").getContext("2d");
+            chartInstance = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: filteredData.map(row => `ID ${row.id}`),
+                    datasets: [{
+                        label: "Relevance Score",
+                        data: filteredData.map(row => row.value),
+                        backgroundColor: "rgba(102, 126, 234, 0.6)",
+                        borderColor: "rgba(102, 126, 234, 1)",
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: "Relevance Score" }
+                        },
+                        x: {
+                            title: { display: true, text: "Data Points" }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 </body>
-  </html>
+</html>
