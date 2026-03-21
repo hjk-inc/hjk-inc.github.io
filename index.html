@@ -1,53 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-  <link rel="icon" type="image/x-icon" href="IMG-20250817-WA0000.jpg">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="rrxHrk0vRqMoWXWt7JmF5VqC3i5Q9XdxJRypKETbLh0" />
   <title>HJK Corporation — AI Everywhere</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.min.js"></script>
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap');
-    *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
-    body{font-family:'Rajdhani',sans-serif;color:#00ffe1;background:#050505;overflow-x:hidden;}
-    header{position:fixed;top:0;left:0;width:100%;background:rgba(0,0,0,0.8);
-      backdrop-filter:blur(8px);display:flex;justify-content:space-between;align-items:center;
-      padding:15px 40px;z-index:1000;border-bottom:1px solid rgba(0,255,255,0.2);}
-    header h1{font-family:'Orbitron',sans-serif;font-size:1.5rem;letter-spacing:2px;
-      color:#00fff6;text-shadow:0 0 15px #00fff6;}
-    nav a{text-decoration:none;color:#00ffe1;margin:0 15px;transition:.3s;font-weight:600;}
-    nav a:hover{color:#fff;text-shadow:0 0 10px #00ffff;}
-    section{padding:120px 10%;min-height:100vh;position:relative;z-index:1;}
-    #home{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
-    #home h2{font-family:'Orbitron',sans-serif;font-size:3rem;text-shadow:0 0 25px #00fff6;margin-bottom:20px;
-      animation:glowPulse 2s infinite;}
-    #home p{font-size:1.3rem;color:#aafdfc;max-width:700px;line-height:1.6;}
-    .btn{display:inline-block;margin-top:30px;padding:12px 25px;background:transparent;
-      border:2px solid #00fff6;color:#00fff6;font-weight:600;border-radius:6px;transition:.3s;}
-    .btn:hover{background:#00fff6;color:#000;box-shadow:0 0 15px #00fff6;}
-    #about,#companies,#products,#contact{background:linear-gradient(to bottom,#050505,#0a0a0a);}
-    h3.section-title{font-family:'Orbitron',sans-serif;font-size:2rem;text-align:center;margin-bottom:50px;
-      color:#00fff6;text-shadow:0 0 15px #00fff6;}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
-    .card{background:rgba(255,255,255,0.05);border:1px solid rgba(0,255,255,0.2);
-      border-radius:10px;padding:25px;text-align:center;transition:.3s;}
-    .card:hover{transform:translateY(-10px);box-shadow:0 0 20px #00fff6;}
-    .card h4{font-family:'Orbitron',sans-serif;color:#00fff6;margin-bottom:10px;}
-    .card p{color:#aafdfc;font-size:.95rem;line-height:1.5;}
-    footer{background:#000;color:#00ffe1;text-align:center;padding:30px 10px;
-      border-top:1px solid rgba(0,255,255,0.2);}
-    footer a{color:#00fff6;text-decoration:none;font-weight:600;}
-    footer a:hover{text-shadow:0 0 10px #00fff6;}
-    canvas#bg{position:fixed;top:0;left:0;z-index:0;}
-    @keyframes glowPulse{0%{text-shadow:0 0 10px #00fff6;}
-      50%{text-shadow:0 0 20px #00fff6,0 0 40px #00fff6;}
-      100%{text-shadow:0 0 10px #00fff6;}}
-    #three-container{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden;}
+    :root {
+      --bg: #050505;
+      --text: #e0f7ff;
+      --text-muted: #a0e0ff;
+      --primary: #00f0ff;
+      --primary-dark: #00b7cc;
+      --accent: #ff00ea;
+      --card-bg: rgba(10, 25, 40, 0.5);
+      --border: rgba(0, 240, 255, 0.25);
+      --glow: 0 0 18px rgba(0,240,255,0.7);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background: rgba(5,5,15,0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      letter-spacing: 3px;
+      color: var(--primary);
+      text-shadow: var(--glow);
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin: 0 1.5rem;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+      text-shadow: var(--glow);
+    }
+
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 0 5%;
+    }
+
+    #hero h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(4rem, 11vw, 8rem);
+      letter-spacing: -2px;
+      text-shadow: 0 0 40px rgba(0,240,255,0.7), 0 0 80px rgba(255,0,234,0.4);
+      margin-bottom: 1.5rem;
+      animation: glowPulse 3.5s infinite alternate;
+    }
+
+    #typed-desc {
+      font-size: clamp(1.4rem, 4vw, 2.1rem);
+      max-width: 880px;
+      margin: 0 auto 2.5rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      min-height: 4rem;
+    }
+
+    .btn {
+      padding: 1rem 2.6rem;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.35s;
+      font-size: 1.15rem;
+      background: transparent;
+      margin: 0.6rem;
+    }
+
+    .btn:hover {
+      background: var(--primary);
+      color: #000;
+      box-shadow: 0 0 30px rgba(0,240,255,0.7);
+      transform: translateY(-4px);
+    }
+
+    .btn-accent { border-color: var(--accent); color: var(--accent); }
+    .btn-accent:hover { background: var(--accent); color: white; box-shadow: 0 0 30px rgba(255,0,234,0.7); }
+
+    .btn-group { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+
+    section { padding: 10rem 5%; position: relative; z-index: 2; }
+    .container { max-width: 1280px; margin: 0 auto; }
+
+    h3.section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 4.2rem);
+      text-align: center;
+      margin-bottom: 4rem;
+      color: var(--primary);
+      text-shadow: var(--glow);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.2rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-14px);
+      box-shadow: 0 0 40px rgba(0,240,255,0.4);
+      border-color: var(--primary);
+    }
+
+    .card h4 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card p { color: var(--text-muted); line-height: 1.6; }
+
+    .cta {
+      text-align: center;
+      padding: 10rem 5%;
+      background: linear-gradient(135deg, rgba(0,240,255,0.08), rgba(255,0,234,0.08));
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      margin: 6rem auto;
+      max-width: 1100px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 5rem 5% 3rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    #three-canvas { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+
+    .theme-toggle, .fullscreen-toggle {
+      position: fixed;
+      top: 1.2rem;
+      background: rgba(0,240,255,0.15);
+      border: none;
+      color: var(--primary);
+      padding: 0.8rem;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.4rem;
+      z-index: 1001;
+    }
+    .theme-toggle { right: 1.2rem; }
+    .fullscreen-toggle { right: 5rem; }
+
+    .volume-slider {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 180px;
+      z-index: 1001;
+      accent-color: var(--primary);
+    }
+
+    @keyframes glowPulse {
+      0%,100% { text-shadow: 0 0 20px rgba(0,240,255,0.7); }
+      50%     { text-shadow: 0 0 60px rgba(0,240,255,1), 0 0 100px rgba(255,0,234,0.6); }
+    }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 1rem; padding: 1.2rem 6%; }
+      nav a { margin: 0.5rem 1.2rem; font-size: 1.05rem; }
+    }
   </style>
 </head>
 <body>
-  <div id="three-container"></div>
-  <canvas id="bg"></canvas>
+
+  <canvas id="three-canvas"></canvas>
+
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
+  <button class="fullscreen-toggle" onclick="toggleFullscreen()" aria-label="Fullscreen">⛶</button>
 
   <header>
     <h1>HJK Corporation</h1>
@@ -60,136 +235,241 @@
     </nav>
   </header>
 
-  <section id="home">
-    <h2>AI Everywhere with hjk-maker(Shubhang mishra)</h2>
-    <p>Artificial Intelligence Everywhere — powering the next generation of human-machine evolution.<br>
-    From advanced databases to AI operating systems, HJK Corporation integrates innovation across every dimension.</p>
-    <a href="#products" class="btn">Explore Products</a>
+  <section id="home" class="hero">
+    <div class="container">
+      <h2>AI Everywhere</h2>
+      <p id="typed-desc"></p>
+      <div class="btn-group">
+        <a href="#products" class="btn">Explore Products</a>
+        <a href="https://github.com/hjk-inc" target="_blank" class="btn btn-accent">GitHub</a>
+      </div>
+    </div>
   </section>
 
   <section id="about">
     <h3 class="section-title">About HJK Corporation</h3>
-    <p style="text-align:center;max-width:800px;margin:auto;color:#aafdfc;font-size:1.1rem;line-height:1.6;">
-      HJK Corporation is a future-driven research and technology organization building the next era of Artificial Intelligence.
-      Our mission is to combine intelligence, computation, and design into a unified AI ecosystem.
-      With a vision to revolutionize accessibility, automation, and awareness, we bring the future — now. the company is an independent company it has no Deals And with any of the other account it is only one by these respective members and it doesn't have any connection to any Organisation all member out of the company and its not related to any of the organisation and it is only run and the control by hjk-maker
-    </p>
+    <div class="container" style="max-width:900px; text-align:center; font-size:1.15rem; color:var(--text-muted); line-height:1.7;">
+      HJK Corporation is a future-driven research and technology organization building the next era of Artificial Intelligence.<br><br>
+      Our mission is to combine intelligence, computation, and design into a unified AI ecosystem.<br>
+      With a vision to revolutionize accessibility, automation, and awareness — we bring the future, now.<br><br>
+      <small>(Independent project • No affiliation with any other organization • Controlled by hjk-maker)</small>
+    </div>
   </section>
 
   <section id="companies">
     <h3 class="section-title">Our Companies</h3>
-    <div class="grid">
+    <div class="container grid">
       <div class="card"><h4>HJKAI</h4><p>Next-gen AI Research and Learning System using ILT (Internet Learning Technique).</p></div>
-      <div class="card"><h4>VSQL</h4><p>VisualSQL AI — an advanced GUI database & AI analytics platform.</p></div>
+      <div class="card"><h4>VSQL</h4><p>VisualSQL AI — advanced GUI database & AI analytics platform.</p></div>
       <div class="card"><h4>HJK.INFINITI</h4><p>Infinite-scale AI ecosystem merging blockchain, neural data, and web intelligence.</p></div>
       <div class="card"><h4>HJK.BATTERY</h4><p>Smart power management and AI-assisted energy efficiency systems.</p></div>
       <div class="card"><h4>HJK Ensign Electronics</h4><p>Offline-first AI networking hub, switch, and gateway technology.</p></div>
-      <div class="card"><h4>AetherAI OS</h4><p>AI Operating System featuring deep integration with TensorFlow, PyTorch, and system intelligence.</p></div>
+      <div class="card"><h4>AetherAI OS</h4><p>AI Operating System with deep integration — TensorFlow, PyTorch, system intelligence.</p></div>
     </div>
   </section>
 
   <section id="products">
     <h3 class="section-title">Our Products</h3>
-    <div class="grid">
-      <div class="card"><h4>HJKAI Software Suite</h4><p>Complete AI learning and model training environment with real-time feedback and zero-work AI training.</p></div>
-      <div class="card"><h4>VSQL 4.0 Pro</h4><p>AI-powered SQL/NoSQL system featuring clustering, anomaly detection, and visual analytics.</p></div>
-      <div class="card"><h4>MTE Security</h4><p>Multi-Type Encryption (MTE) for quantum-resistant, secure AI systems.</p></div>
-      <div class="card"><h4>HJK Ensign Network Hub</h4><p>Software-based network infrastructure with AI-powered routing and energy optimization.</p></div>
+    <div class="container grid">
+      <div class="card"><h4>HJKAI Software Suite</h4><p>Complete AI learning & model training with real-time feedback and zero-work training.</p></div>
+      <div class="card"><h4>VSQL 4.0 Pro</h4><p>AI-powered SQL/NoSQL featuring clustering, anomaly detection, visual analytics.</p></div>
+      <div class="card"><h4>MTE Security</h4><p>Multi-Type Encryption — quantum-resistant security for AI systems.</p></div>
+      <div class="card"><h4>HJK Ensign Network Hub</h4><p>AI-powered routing, energy optimization, software-based network infrastructure.</p></div>
     </div>
   </section>
 
-  <section id="contact">
+  <section id="contact" class="cta">
     <h3 class="section-title">Contact Us</h3>
-    <p style="text-align:center;color:#aafdfc;font-size:1.1rem;">
-      We’d love to hear from you.<br>For collaboration, research, or product inquiries:
+    <p style="font-size:1.4rem; max-width:800px; margin:0 auto 3rem; color:var(--text-muted);">
+      For collaboration, research or product inquiries — reach out via GitHub.
     </p>
-    <div style="text-align:center;margin-top:20px;">
-      <a href="https://github.com/hjk-inc" class="btn">Visit Our GitHub</a>
+    <div class="btn-group">
+      <a href="https://github.com/hjk-inc" target="_blank" class="btn">Visit GitHub →</a>
     </div>
   </section>
 
   <footer>
-    <p>© 2025 HJK Corporation. All rights reserved not connected to any of the organisations and it has no connection with any company or organisation like hjk-hub.etc</p>
+    <p>© 2025–2026 HJK Corporation • Independent project • No connection to any other entities</p>
     <p>“AI Everywhere — Artificial Intelligence Everywhere”</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <input type="range" id="volume-slider" class="volume-slider" min="0" max="100" value="12" title="Hover Sound Volume">
+
   <script>
-    // 3D orb and cube scene
-    const container = document.getElementById('three-container');
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({alpha:true});
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    container.appendChild(renderer.domElement);
-
-    // Lights
-    const pointLight = new THREE.PointLight(0x00fff6, 2, 100);
-    pointLight.position.set(5, 5, 5);
-    scene.add(pointLight);
-    const ambient = new THREE.AmbientLight(0x00fff6, 0.4);
-    scene.add(ambient);
-
-    // Orb
-    const orbGeo = new THREE.SphereGeometry(1.2, 64, 64);
-    const orbMat = new THREE.MeshStandardMaterial({color:0x00fff6, emissive:0x00fff6, emissiveIntensity:0.6, metalness:0.8, roughness:0.3});
-    const orb = new THREE.Mesh(orbGeo, orbMat);
-    scene.add(orb);
-
-    // Cube
-    const cubeGeo = new THREE.BoxGeometry(2,2,2);
-    const cubeEdges = new THREE.EdgesGeometry(cubeGeo);
-    const cubeMat = new THREE.LineBasicMaterial({color:0x00fff6});
-    const cube = new THREE.LineSegments(cubeEdges, cubeMat);
-    cube.position.x = -4;
-    scene.add(cube);
-
-    camera.position.z = 5;
-
-    function animate(){
-      requestAnimationFrame(animate);
-      orb.rotation.y += 0.01;
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-      orb.scale.setScalar(1 + Math.sin(Date.now()*0.002)*0.05);
-      renderer.render(scene, camera);
+    // ────────────────────────────────────────────────
+    // Theme & Fullscreen
+    // ────────────────────────────────────────────────
+    function toggleTheme() {
+      const html = document.documentElement;
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
     }
-    animate();
-    window.addEventListener('resize', ()=>{
-      camera.aspect = window.innerWidth/window.innerHeight;
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+
+    // ────────────────────────────────────────────────
+    // Typing effect
+    // ────────────────────────────────────────────────
+    const descEl = document.getElementById('typed-desc');
+    const text = "Artificial Intelligence Everywhere — powering the next generation of human-machine evolution.\nFrom advanced databases to AI operating systems, HJK integrates innovation across every dimension.";
+    let i = 0;
+    function typeWriter() {
+      if (i < text.length) {
+        descEl.innerHTML += text.charAt(i) === '\n' ? '<br>' : text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 45);
+      }
+    }
+    setTimeout(typeWriter, 800);
+
+    // ────────────────────────────────────────────────
+    // Three.js – upgraded orb + particle scene
+    // ────────────────────────────────────────────────
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x05050f);
+    const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 200);
+    camera.position.z = 14;
+
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas'), antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // Particle background
-    const canvas = document.getElementById("bg");
-    const ctx = canvas.getContext("2d");
-    let w,h,particles;
-    function resize(){
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-      particles = [];
-      for(let i=0;i<100;i++){
-        particles.push({x:Math.random()*w,y:Math.random()*h,
-          vx:(Math.random()-.5)*.8,vy:(Math.random()-.5)*.8,size:Math.random()*2+1});
-      }
+    // Lights
+    scene.add(new THREE.AmbientLight(0x404060, 0.7));
+    const pLight1 = new THREE.PointLight(0x00ffff, 5, 60); pLight1.position.set(10, 12, 10); scene.add(pLight1);
+    const pLight2 = new THREE.PointLight(0xff00ea, 4, 60); pLight2.position.set(-10, -8, 12); scene.add(pLight2);
+
+    // Floating shapes
+    const shapes = [];
+    const colors = [0x00ffff, 0xff00ea, 0x00ffaa, 0xff8800, 0x9945ff];
+
+    for (let i = 0; i < 10; i++) {
+      let geo;
+      const t = i % 5;
+      if (t === 0) geo = new THREE.OctahedronGeometry(1.3 + Math.random()*0.7, 0);
+      else if (t === 1) geo = new THREE.TetrahedronGeometry(1.5, 0);
+      else if (t === 2) geo = new THREE.IcosahedronGeometry(1.2, 0);
+      else if (t === 3) geo = new THREE.DodecahedronGeometry(1.1 + Math.random()*0.6, 0);
+      else geo = new THREE.TorusKnotGeometry(1, 0.35, 120, 12);
+
+      const mat = new THREE.MeshStandardMaterial({
+        color: colors[i % colors.length],
+        emissive: colors[i % colors.length],
+        emissiveIntensity: 0.8 + Math.random()*0.5,
+        metalness: 0.9,
+        roughness: 0.12,
+        transparent: true,
+        opacity: 0.8
+      });
+
+      const m = new THREE.Mesh(geo, mat);
+      m.position.set(
+        (Math.random()-0.5)*30,
+        (Math.random()-0.5)*20,
+        (Math.random()-0.5)*12 - 6
+      );
+      m.userData = { rotSpeed: 0.004 + Math.random()*0.009, floatSpeed: 0.0007 + Math.random()*0.0013 };
+      scene.add(m);
+      shapes.push(m);
     }
-    function draw(){
-      ctx.fillStyle="rgba(0,0,0,0.2)";
-      ctx.fillRect(0,0,w,h);
-      ctx.fillStyle="#00fff6";
-      for(let p of particles){
-        p.x+=p.vx;p.y+=p.vy;
-        if(p.x<0||p.x>w)p.vx*=-1;
-        if(p.y<0||p.y>h)p.vy*=-1;
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-        ctx.fill();
+
+    // Mouse interaction
+    let mouse = new THREE.Vector2();
+    document.addEventListener('mousemove', e => {
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    // Click explosion
+    const explosions = [];
+    document.addEventListener('click', e => {
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = -(e.clientY / window.innerHeight) * 2 + 1;
+      for (let i = 0; i < 30; i++) {
+        const geo = new THREE.SphereGeometry(0.08, 8, 8);
+        const mat = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+        const p = new THREE.Mesh(geo, mat);
+        p.position.set(x*10, y*10, 0);
+        p.velocity = new THREE.Vector3(
+          (Math.random()-0.5)*0.8,
+          (Math.random()-0.5)*0.8,
+          (Math.random()-0.5)*0.8
+        );
+        scene.add(p);
+        explosions.push(p);
       }
-      requestAnimationFrame(draw);
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      shapes.forEach(s => {
+        s.rotation.x += s.userData.rotSpeed * 0.6;
+        s.rotation.y += s.userData.rotSpeed * 1.2;
+        s.position.y += Math.sin(Date.now() * s.userData.floatSpeed + s.position.x) * 0.005;
+        s.position.x += (mouse.x * 6 - s.position.x) * 0.006;
+        s.position.z += (mouse.y * 5 - s.position.z) * 0.005;
+      });
+
+      // Explosion decay
+      explosions.forEach((p, idx) => {
+        p.position.add(p.velocity);
+        p.scale.multiplyScalar(0.95);
+        if (p.scale.x < 0.01) {
+          scene.remove(p);
+          explosions.splice(idx, 1);
+        }
+      });
+
+      renderer.render(scene, camera);
     }
-    window.addEventListener("resize",resize);
-    resize(); draw();
+    animate();
+
+    // ────────────────────────────────────────────────
+    // Hover sound
+    // ────────────────────────────────────────────────
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    let osc = null, gain = null;
+
+    function startHoverSound() {
+      if (osc) return;
+      osc = audioCtx.createOscillator();
+      gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = 90;
+      gain.gain.value = 0.08;
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+    }
+
+    function stopHoverSound() {
+      if (!osc) return;
+      gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.4);
+      osc.stop(audioCtx.currentTime + 0.4);
+      osc = null;
+    }
+
+    document.querySelectorAll('.btn, .card').forEach(el => {
+      el.addEventListener('mouseenter', startHoverSound);
+      el.addEventListener('mouseleave', stopHoverSound);
+    });
+
+    document.getElementById('volume-slider').addEventListener('input', e => {
+      if (gain) gain.gain.value = e.target.value / 1200;
+    });
   </script>
 </body>
 </html>
