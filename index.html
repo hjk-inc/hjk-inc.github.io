@@ -1,17 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-<head> 
-  <link rel="icon" type="image/jpeg" href="IMG-20250817-WA0000.jpg">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="rrxHrk0vRqMoWXWt7JmF5VqC3i5Q9XdxJRypKETbLh0" />
-  <title>HJK Corporation — Decentralized AI Ecosystem</title>
+
+  <!-- Primary SEO -->
+  <title>HJK Corporation — Decentralized AI Research Network</title>
+  <meta name="description" content="HJK Corporation is an independent, decentralized research network building autonomous AI, quantum-inspired computation, and distributed infrastructure across specialized divisions including hjk-inc, HJK-QUANTUM, and Virtualsql.">
+  <meta name="keywords" content="HJK Corporation, decentralized AI, HJKAI, HJK-QUANTUM, autonomous AI research, hjk-inc, decentralized network, AI ecosystem">
+  <link rel="canonical" href="https://hjk-inc.github.io/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="hjk-maker">
+  <meta name="theme-color" content="#050505">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="HJK Corporation">
+  <meta property="og:title" content="HJK Corporation — Decentralized AI Research Network">
+  <meta property="og:description" content="An independent, decentralized research network building autonomous AI and quantum-inspired computation across specialized divisions.">
+  <meta property="og:url" content="https://hjk-inc.github.io/">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HJK Corporation — Decentralized AI Research Network">
+  <meta name="twitter:description" content="Independent research network spanning autonomous AI, quantum-inspired computation, and distributed infrastructure.">
+
+  <link rel="icon" type="image/jpeg" href="IMG-20250817-WA0000.jpg">
+  <link rel="apple-touch-icon" href="IMG-20250817-WA0000.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <script src="https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.min.js"></script>
+  <!-- Schema.org: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "HJK Corporation",
+    "url": "https://hjk-inc.github.io/",
+    "description": "An independent, decentralized research and technology network building autonomous AI, quantum-inspired computation, and distributed infrastructure across specialized divisions.",
+    "sameAs": [
+      "https://github.com/hjk-inc"
+    ],
+    "knowsAbout": ["artificial intelligence", "quantum-inspired computing", "decentralized systems", "autonomous agents"]
+  }
+  </script>
 
   <style>
     :root {
@@ -26,13 +62,28 @@
       --glow: 0 0 18px rgba(0,240,255,0.7);
     }
 
+    [data-theme="light"] {
+      --bg: #f4fbff;
+      --text: #05202b;
+      --text-muted: #2c5b6b;
+      --primary: #0090a3;
+      --primary-dark: #007686;
+      --accent: #c400b0;
+      --card-bg: rgba(255, 255, 255, 0.65);
+      --border: rgba(0, 144, 163, 0.3);
+      --glow: 0 0 14px rgba(0,144,163,0.4);
+    }
+
     * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
     body {
       font-family: 'Rajdhani', sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
+      transition: background 0.4s ease, color 0.4s ease;
     }
+
+    a { color: inherit; }
 
     header {
       position: fixed;
@@ -47,6 +98,7 @@
       justify-content: space-between;
       align-items: center;
     }
+    [data-theme="light"] header { background: rgba(244,251,255,0.85); }
 
     header h1 {
       font-family: 'Orbitron', sans-serif;
@@ -56,6 +108,7 @@
       text-shadow: var(--glow);
     }
 
+    nav { display: flex; align-items: center; }
     nav a {
       color: var(--text);
       text-decoration: none;
@@ -69,7 +122,16 @@
       text-shadow: var(--glow);
     }
 
-    #hero {
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    #home {
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -79,7 +141,7 @@
       padding: 0 5%;
     }
 
-    #hero h2 {
+    #home h2 {
       font-family: 'Orbitron', sans-serif;
       font-size: clamp(4rem, 11vw, 8rem);
       letter-spacing: -2px;
@@ -108,9 +170,10 @@
       font-size: 1.15rem;
       background: transparent;
       margin: 0.6rem;
+      display: inline-block;
     }
 
-    .btn:hover {
+    .btn:hover, .btn:focus-visible {
       background: var(--primary);
       color: #000;
       box-shadow: 0 0 30px rgba(0,240,255,0.7);
@@ -118,7 +181,12 @@
     }
 
     .btn-accent { border-color: var(--accent); color: var(--accent); }
-    .btn-accent:hover { background: var(--accent); color: white; box-shadow: 0 0 30px rgba(255,0,234,0.7); }
+    .btn-accent:hover, .btn-accent:focus-visible { background: var(--accent); color: white; box-shadow: 0 0 30px rgba(255,0,234,0.7); }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+    }
 
     .btn-group { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
 
@@ -194,6 +262,7 @@
       cursor: pointer;
       font-size: 1.4rem;
       z-index: 1001;
+      line-height: 1;
     }
     .theme-toggle { right: 1.2rem; }
     .fullscreen-toggle { right: 5rem; }
@@ -212,22 +281,47 @@
       50%     { text-shadow: 0 0 60px rgba(0,240,255,1), 0 0 100px rgba(255,0,234,0.6); }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      #home h2 { animation: none; }
+      * { scroll-behavior: auto !important; }
+      #three-canvas { display: none; }
+    }
+
     @media (max-width: 768px) {
-      header { flex-direction: column; gap: 1rem; padding: 1.2rem 6%; }
-      nav a { margin: 0.5rem 1.2rem; font-size: 1.05rem; }
+      header { padding: 1.2rem 6%; }
+      .nav-toggle { display: block; }
+      nav {
+        position: fixed;
+        top: 0; right: -100%;
+        width: min(78vw, 320px);
+        height: 100vh;
+        background: rgba(5,5,15,0.97);
+        border-left: 1px solid var(--border);
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 2rem 2.2rem;
+        transition: right 0.35s ease;
+      }
+      [data-theme="light"] nav { background: rgba(244,251,255,0.97); }
+      nav.open { right: 0; }
+      nav a { margin: 1rem 0; font-size: 1.3rem; }
+      .fullscreen-toggle { right: 1.2rem; top: 4.2rem; }
     }
   </style>
 </head>
 <body>
 
   <canvas id="three-canvas"></canvas>
+  <noscript>This page uses JavaScript for its interactive background and navigation. Core content remains readable without it.</noscript>
 
-  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
-  <button class="fullscreen-toggle" onclick="toggleFullscreen()" aria-label="Fullscreen">⛶</button>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light and dark theme">🌙</button>
+  <button class="fullscreen-toggle" onclick="toggleFullscreen()" aria-label="Toggle fullscreen">⛶</button>
 
   <header>
     <h1>HJK Corporation</h1>
-    <nav>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+    <nav id="main-nav">
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#companies">Organizations</a>
@@ -236,86 +330,109 @@
     </nav>
   </header>
 
-  <section id="home" class="hero" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative;">
-    <div class="container">
-      <h2>Decentralized AI</h2>
-      <p id="typed-desc"></p>
-      <div class="btn-group">
-        <a href="#products" class="btn">Explore Products</a>
-        <a href="https://github.com/hjk-inc" target="_blank" class="btn btn-accent">GitHub Hub</a>
+  <main>
+    <section id="home">
+      <div class="container">
+        <h2>Decentralized AI</h2>
+        <p id="typed-desc"></p>
+        <div class="btn-group">
+          <a href="#products" class="btn">Explore Products</a>
+          <a href="https://github.com/hjk-inc" target="_blank" rel="noopener" class="btn btn-accent">GitHub Hub</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="about">
-    <h3 class="section-title">About HJK Corporation</h3>
-    <div class="container" style="max-width:900px; text-align:center; font-size:1.15rem; color:var(--text-muted); line-height:1.7;">
-      HJK Corporation operates as a fully decentralized research and technology network, building the next era of Artificial Intelligence across specialized, autonomous divisions.<br><br>
-      Our mission is to combine intelligence, quantum computation, and advanced network design into a unified, robust ecosystem.<br><br>
-      <small>(Independent project • No affiliation with any other organization • Controlled by hjk-maker)</small>
-    </div>
-  </section>
+    <section id="about">
+      <h3 class="section-title">About HJK Corporation</h3>
+      <div class="container" style="max-width:900px; text-align:center; font-size:1.15rem; color:var(--text-muted); line-height:1.7;">
+        HJK Corporation operates as a fully decentralized research and technology network, building the next era of Artificial Intelligence across specialized, autonomous divisions.<br><br>
+        Our mission is to combine intelligence, quantum computation, and advanced network design into a unified, robust ecosystem.<br><br>
+        <small>(Independent project • No affiliation with any other organization • Controlled by hjk-maker)</small>
+      </div>
+    </section>
 
-  <section id="companies">
-    <h3 class="section-title">Decentralized Organizations</h3>
-    <div class="container grid">
-      <div class="card"><h4>hjk-inc</h4><p>Core AI research hub, home to HJKAI-v2, universal interaction protocols, and fluid topological neural networks.</p></div>
-      <div class="card"><h4>HJK-QUANTUM</h4><p>Next-generation quantum-inspired computational physics and frameworks.</p></div>
-      <div class="card"><h4>Virtualsql</h4><p>Specialized autonomous development for advanced GUI databases and decentralized ledgers.</p></div>
-      <div class="card"><h4>NuralBlanket</h4><p>Dedicated to autonomous introspective web-vision systems and deep image ingestion pipelines.</p></div>
-      <div class="card"><h4>Nuralwhite</h4><p>Development center for Nuralwhite-ACAG and advanced cognitive mapping frameworks.</p></div>
-      <div class="card"><h4>HJKMCS</h4><p>Specialized body researching and developing the Mind-Cloning System architecture.</p></div>
-      <div class="card"><h4>SafeStrike</h4><p>Autonomous security, defense protocols, and strike vector research.</p></div>
-      <div class="card"><h4>HJKEnsignElectronics</h4><p>Offline-first networking, hardware integration, and AI gateway technology.</p></div>
-      <div class="card"><h4>AntherAios</h4><p>Dedicated body for the Aether/Anther AI Operating System and system intelligence.</p></div>
-    </div>
-  </section>
+    <section id="companies">
+      <h3 class="section-title">Decentralized Organizations</h3>
+      <div class="container grid">
+        <div class="card"><h4>hjk-inc</h4><p>Core AI research hub, home to HJKAI-v2, universal interaction protocols, and fluid topological neural networks.</p></div>
+        <div class="card"><h4>HJK-QUANTUM</h4><p>Next-generation quantum-inspired computational physics and frameworks.</p></div>
+        <div class="card"><h4>Virtualsql</h4><p>Specialized autonomous development for advanced GUI databases and decentralized ledgers.</p></div>
+        <div class="card"><h4>NuralBlanket</h4><p>Dedicated to autonomous introspective web-vision systems and deep image ingestion pipelines.</p></div>
+        <div class="card"><h4>Nuralwhite</h4><p>Development center for Nuralwhite-ACAG and advanced cognitive mapping frameworks.</p></div>
+        <div class="card"><h4>HJKMCS</h4><p>Specialized body researching and developing the Mind-Cloning System architecture.</p></div>
+        <div class="card"><h4>SafeStrike</h4><p>Autonomous security, defense protocols, and strike vector research.</p></div>
+        <div class="card"><h4>HJKEnsignElectronics</h4><p>Offline-first networking, hardware integration, and AI gateway technology.</p></div>
+        <div class="card"><h4>AntherAios</h4><p>Dedicated body for the Aether/Anther AI Operating System and system intelligence.</p></div>
+      </div>
+    </section>
 
-  <section id="products">
-    <h3 class="section-title">Ecosystem Products</h3>
-    <div class="container grid">
-      <div class="card"><h4>HJKAI-v2</h4><p>Advanced adversarial neural architectures designed for autonomous logic verification and real-time decision making.</p></div>
-      <div class="card"><h4>Qurom & HJK-QUANTUM</h4><p>Quantum-inspired algorithms offering high-efficiency, non-linear processing for complex simulations.</p></div>
-      <div class="card"><h4>ClathSQL Sovereign (Pro)</h4><p>Decentralized cryptocurrency ledger and industrial-grade sovereign AI sidecar ecosystem.</p></div>
-      <div class="card"><h4>Blanket</h4><p>Autonomous introspective web-vision system capable of validating, ingesting, and analyzing large visual datasets.</p></div>
-      <div class="card"><h4>VSQL</h4><p>Advanced visual SQL AI analytics platform designed to integrate seamlessly into complex autonomous pipelines.</p></div>
-    </div>
-  </section>
+    <section id="products">
+      <h3 class="section-title">Ecosystem Products</h3>
+      <div class="container grid">
+        <div class="card"><h4>HJKAI-v2</h4><p>Advanced adversarial neural architectures designed for autonomous logic verification and real-time decision making.</p></div>
+        <div class="card"><h4>Qurom & HJK-QUANTUM</h4><p>Quantum-inspired algorithms offering high-efficiency, non-linear processing for complex simulations.</p></div>
+        <div class="card"><h4>ClathSQL Sovereign (Pro)</h4><p>Decentralized cryptocurrency ledger and industrial-grade sovereign AI sidecar ecosystem.</p></div>
+        <div class="card"><h4>Blanket</h4><p>Autonomous introspective web-vision system capable of validating, ingesting, and analyzing large visual datasets.</p></div>
+        <div class="card"><h4>VSQL</h4><p>Advanced visual SQL AI analytics platform designed to integrate seamlessly into complex autonomous pipelines.</p></div>
+      </div>
+    </section>
 
-  <section id="contact" class="cta">
-    <h3 class="section-title">Connect with the Network</h3>
-    <p style="font-size:1.4rem; max-width:800px; margin:0 auto 3rem; color:var(--text-muted);">
-      Access our decentralized repositories, research portals, and latest roadmaps via our central GitHub organization.
-    </p>
-    <div class="btn-group">
-      <a href="https://github.com/hjk-inc" target="_blank" class="btn">Enter HJK-INC Hub →</a>
-    </div>
-  </section>
+    <section id="contact" class="cta">
+      <h3 class="section-title">Connect with the Network</h3>
+      <p style="font-size:1.4rem; max-width:800px; margin:0 auto 3rem; color:var(--text-muted);">
+        Access our decentralized repositories, research portals, and latest roadmaps via our central GitHub organization.
+      </p>
+      <div class="btn-group">
+        <a href="https://github.com/hjk-inc" target="_blank" rel="noopener" class="btn">Enter HJK-INC Hub →</a>
+      </div>
+    </section>
+  </main>
 
   <footer>
     <p>© 2025–2026 HJK Corporation • Decentralized Autonomous Network</p>
-    <p>“AI Everywhere — Intelligence Without Boundaries”</p>
+    <p>"AI Everywhere — Intelligence Without Boundaries"</p>
   </footer>
 
-  <input type="range" id="volume-slider" class="volume-slider" min="0" max="100" value="12" title="Hover Sound Volume">
+  <input type="range" id="volume-slider" class="volume-slider" min="0" max="100" value="12" title="Hover sound volume" aria-label="Hover sound volume">
 
+  <script src="https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.min.js"></script>
   <script>
     // ────────────────────────────────────────────────
-    // Theme & Fullscreen
+    // Theme, fullscreen & mobile nav
     // ────────────────────────────────────────────────
+    const themeBtn = document.querySelector('.theme-toggle');
+
+    function applyThemeIcon(theme) {
+      themeBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
+    }
+
     function toggleTheme() {
       const html = document.documentElement;
       const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
+      applyThemeIcon(next);
     }
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    applyThemeIcon(savedTheme);
 
     function toggleFullscreen() {
       if (!document.fullscreenElement) document.documentElement.requestFullscreen();
       else document.exitFullscreen();
     }
+
+    const navEl = document.getElementById('main-nav');
+    const navToggleBtn = document.querySelector('.nav-toggle');
+    function toggleNav() {
+      const isOpen = navEl.classList.toggle('open');
+      navToggleBtn.setAttribute('aria-expanded', String(isOpen));
+    }
+    navEl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navEl.classList.remove('open');
+      navToggleBtn.setAttribute('aria-expanded', 'false');
+    }));
 
     // ────────────────────────────────────────────────
     // Typing effect
@@ -333,127 +450,143 @@
     setTimeout(typeWriter, 800);
 
     // ────────────────────────────────────────────────
-    // Three.js – upgraded orb + particle scene
+    // Three.js – orb + particle scene (guarded: page still works if this fails)
     // ────────────────────────────────────────────────
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x05050f);
-    const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 200);
-    camera.position.z = 14;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas'), antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    try {
+      if (typeof THREE === 'undefined') throw new Error('Three.js failed to load');
+      if (prefersReducedMotion) throw new Error('Reduced motion preferred, skipping 3D background');
 
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
+      const canvas = document.getElementById('three-canvas');
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x05050f);
+      const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 200);
+      camera.position.z = 14;
+
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
-    // Lights
-    scene.add(new THREE.AmbientLight(0x404060, 0.7));
-    const pLight1 = new THREE.PointLight(0x00ffff, 5, 60); pLight1.position.set(10, 12, 10); scene.add(pLight1);
-    const pLight2 = new THREE.PointLight(0xff00ea, 4, 60); pLight2.position.set(-10, -8, 12); scene.add(pLight2);
-
-    // Floating shapes
-    const shapes = [];
-    const colors = [0x00ffff, 0xff00ea, 0x00ffaa, 0xff8800, 0x9945ff];
-
-    for (let i = 0; i < 10; i++) {
-      let geo;
-      const t = i % 5;
-      if (t === 0) geo = new THREE.OctahedronGeometry(1.3 + Math.random()*0.7, 0);
-      else if (t === 1) geo = new THREE.TetrahedronGeometry(1.5, 0);
-      else if (t === 2) geo = new THREE.IcosahedronGeometry(1.2, 0);
-      else if (t === 3) geo = new THREE.DodecahedronGeometry(1.1 + Math.random()*0.6, 0);
-      else geo = new THREE.TorusKnotGeometry(1, 0.35, 120, 12);
-
-      const mat = new THREE.MeshStandardMaterial({
-        color: colors[i % colors.length],
-        emissive: colors[i % colors.length],
-        emissiveIntensity: 0.8 + Math.random()*0.5,
-        metalness: 0.9,
-        roughness: 0.12,
-        transparent: true,
-        opacity: 0.8
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
       });
 
-      const m = new THREE.Mesh(geo, mat);
-      m.position.set(
-        (Math.random()-0.5)*30,
-        (Math.random()-0.5)*20,
-        (Math.random()-0.5)*12 - 6
-      );
-      m.userData = { rotSpeed: 0.004 + Math.random()*0.009, floatSpeed: 0.0007 + Math.random()*0.0013 };
-      scene.add(m);
-      shapes.push(m);
-    }
+      scene.add(new THREE.AmbientLight(0x404060, 0.7));
+      const pLight1 = new THREE.PointLight(0x00ffff, 5, 60); pLight1.position.set(10, 12, 10); scene.add(pLight1);
+      const pLight2 = new THREE.PointLight(0xff00ea, 4, 60); pLight2.position.set(-10, -8, 12); scene.add(pLight2);
 
-    // Mouse interaction
-    let mouse = new THREE.Vector2();
-    document.addEventListener('mousemove', e => {
-      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-    });
+      const shapes = [];
+      const colors = [0x00ffff, 0xff00ea, 0x00ffaa, 0xff8800, 0x9945ff];
 
-    // Click explosion
-    const explosions = [];
-    document.addEventListener('click', e => {
-      const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = -(e.clientY / window.innerHeight) * 2 + 1;
-      for (let i = 0; i < 30; i++) {
-        const geo = new THREE.SphereGeometry(0.08, 8, 8);
-        const mat = new THREE.MeshBasicMaterial({ color: 0x00ffff });
-        const p = new THREE.Mesh(geo, mat);
-        p.position.set(x*10, y*10, 0);
-        p.velocity = new THREE.Vector3(
-          (Math.random()-0.5)*0.8,
-          (Math.random()-0.5)*0.8,
-          (Math.random()-0.5)*0.8
+      for (let i = 0; i < 10; i++) {
+        let geo;
+        const t = i % 5;
+        if (t === 0) geo = new THREE.OctahedronGeometry(1.3 + Math.random()*0.7, 0);
+        else if (t === 1) geo = new THREE.TetrahedronGeometry(1.5, 0);
+        else if (t === 2) geo = new THREE.IcosahedronGeometry(1.2, 0);
+        else if (t === 3) geo = new THREE.DodecahedronGeometry(1.1 + Math.random()*0.6, 0);
+        else geo = new THREE.TorusKnotGeometry(1, 0.35, 120, 12);
+
+        const mat = new THREE.MeshStandardMaterial({
+          color: colors[i % colors.length],
+          emissive: colors[i % colors.length],
+          emissiveIntensity: 0.8 + Math.random()*0.5,
+          metalness: 0.9,
+          roughness: 0.12,
+          transparent: true,
+          opacity: 0.8
+        });
+
+        const m = new THREE.Mesh(geo, mat);
+        m.position.set(
+          (Math.random()-0.5)*30,
+          (Math.random()-0.5)*20,
+          (Math.random()-0.5)*12 - 6
         );
-        scene.add(p);
-        explosions.push(p);
+        m.userData = { rotSpeed: 0.004 + Math.random()*0.009, floatSpeed: 0.0007 + Math.random()*0.0013 };
+        scene.add(m);
+        shapes.push(m);
       }
-    });
 
-    function animate() {
-      requestAnimationFrame(animate);
-
-      shapes.forEach(s => {
-        s.rotation.x += s.userData.rotSpeed * 0.6;
-        s.rotation.y += s.userData.rotSpeed * 1.2;
-        s.position.y += Math.sin(Date.now() * s.userData.floatSpeed + s.position.x) * 0.005;
-        s.position.x += (mouse.x * 6 - s.position.x) * 0.006;
-        s.position.z += (mouse.y * 5 - s.position.z) * 0.005;
+      let mouse = new THREE.Vector2();
+      document.addEventListener('mousemove', e => {
+        mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
       });
 
-      // Explosion decay
-      explosions.forEach((p, idx) => {
-        p.position.add(p.velocity);
-        p.scale.multiplyScalar(0.95);
-        if (p.scale.x < 0.01) {
-          scene.remove(p);
-          explosions.splice(idx, 1);
+      let explosions = [];
+      document.addEventListener('click', e => {
+        const x = (e.clientX / window.innerWidth) * 2 - 1;
+        const y = -(e.clientY / window.innerHeight) * 2 + 1;
+        for (let i = 0; i < 30; i++) {
+          const geo = new THREE.SphereGeometry(0.08, 8, 8);
+          const mat = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+          const p = new THREE.Mesh(geo, mat);
+          p.position.set(x*10, y*10, 0);
+          p.velocity = new THREE.Vector3(
+            (Math.random()-0.5)*0.8,
+            (Math.random()-0.5)*0.8,
+            (Math.random()-0.5)*0.8
+          );
+          scene.add(p);
+          explosions.push(p);
         }
       });
 
-      renderer.render(scene, camera);
+      function animate() {
+        requestAnimationFrame(animate);
+
+        shapes.forEach(s => {
+          s.rotation.x += s.userData.rotSpeed * 0.6;
+          s.rotation.y += s.userData.rotSpeed * 1.2;
+          s.position.y += Math.sin(Date.now() * s.userData.floatSpeed + s.position.x) * 0.005;
+          s.position.x += (mouse.x * 6 - s.position.x) * 0.006;
+          s.position.z += (mouse.y * 5 - s.position.z) * 0.005;
+        });
+
+        // Explosion decay — iterate backwards so splicing doesn't skip items
+        for (let idx = explosions.length - 1; idx >= 0; idx--) {
+          const p = explosions[idx];
+          p.position.add(p.velocity);
+          p.scale.multiplyScalar(0.95);
+          if (p.scale.x < 0.01) {
+            scene.remove(p);
+            explosions.splice(idx, 1);
+          }
+        }
+
+        renderer.render(scene, camera);
+      }
+      animate();
+    } catch (err) {
+      console.warn('3D background disabled:', err.message);
+      document.getElementById('three-canvas').style.display = 'none';
     }
-    animate();
 
     // ────────────────────────────────────────────────
-    // Hover sound
+    // Hover sound — audio context created lazily on first user gesture
+    // (avoids browser autoplay-policy blocks/warnings)
     // ────────────────────────────────────────────────
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    let osc = null, gain = null;
+    let audioCtx = null, osc = null, gain = null;
+
+    function ensureAudioCtx() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
 
     function startHoverSound() {
+      ensureAudioCtx();
       if (osc) return;
       osc = audioCtx.createOscillator();
       gain = audioCtx.createGain();
       osc.type = 'sine';
       osc.frequency.value = 90;
-      gain.gain.value = 0.08;
+      gain.gain.value = document.getElementById('volume-slider').value / 1200;
       osc.connect(gain);
       gain.connect(audioCtx.destination);
       osc.start();
